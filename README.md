@@ -1,5 +1,17 @@
 # get_post_restful_api
 
+## Command Line Tool
+
+The syntax for the command line tool is:
+
+`cat input_file.json | python nest.py nest_level_1 nest_level_2 ... nest_level_n`
+
+Example:
+
+`cat input.json | python.exe nest.py currency country city`
+
+## RESTful API Service
+
 Queries to this service must be POST requests, passing JSON in the following format:
 
 `{"hierarchy":[],"data":[{}]}`
