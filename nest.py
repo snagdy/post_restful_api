@@ -35,16 +35,22 @@ def list_to_nested_dict(input_key_list, remainder_dict):
     return nested_dict
 
 
-def regroup_json_data(json, hierarchy_list, extra_keys_list):
-    for j in range(len(json)):
-        d = json[j]
+def regroup_json_data(_json, hierarchy_list, extra_keys_list):
+    for j in range(len(_json)):
+        d = _json[j]
         r = {key: d[key] for key in extra_keys_list}
-        if j < 1:
-            _dict = list_to_nested_dict([d[key] for key in hierarchy_list], r)
-        else:
-            new_dict = list_to_nested_dict([d[key] for key in hierarchy_list], r)
-            update(_dict, new_dict)
-    return _dict
+        try:
+            if j < 1:
+                _dict = list_to_nested_dict([d[key] for key in hierarchy_list], r)
+            else:
+                new_dict = list_to_nested_dict([d[key] for key in hierarchy_list], r)
+                update(_dict, new_dict)
+        except KeyError:
+            _dict = {
+                'status': '400',
+                'message': 'A key in hierarchy does not exist in data, please pass a valid key from your JSON data.'
+            }
+    return json.dumps(_dict)
 
 
 def main():
