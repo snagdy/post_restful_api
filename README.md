@@ -1,4 +1,4 @@
-# get_post_restful_api
+# post_restful_api
 
 ## Command Line Tool
 
